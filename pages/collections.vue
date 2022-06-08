@@ -6,4 +6,8 @@
 </template>
 
 <script>
+export default {
+    
+    layout: "InspireLayout"
+}
 </script>
