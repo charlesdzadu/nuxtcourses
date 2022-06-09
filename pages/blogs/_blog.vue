@@ -6,6 +6,9 @@
 
 <script>
 export default {
+    validate({params}){
+        return true;
+    },
     data(){
         return {
             slug: this.$route.params['blog'],

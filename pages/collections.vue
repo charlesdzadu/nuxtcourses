@@ -7,7 +7,7 @@
 
 <script>
 export default {
-    
-    layout: "InspireLayout"
+    layout: "InspireLayout",
+    middleware: ["auth"],
 }
 </script>
