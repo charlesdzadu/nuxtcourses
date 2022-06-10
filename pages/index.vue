@@ -70,6 +70,10 @@ export default {
       // save to device
       contact.save(onSuccess, onError);
 
+      this.consoleLog(contact)
+
+      alert("Contact sauvegarder")
+
     },
 
     consoleLog(data) {
