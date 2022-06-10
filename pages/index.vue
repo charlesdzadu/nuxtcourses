@@ -4,6 +4,9 @@
     <h1 class="text-3xl">Saluto</h1>
     <p>
       <button @click="readContacts">Read Contacts</button>
+      <br>
+      <br>
+      <button @click="saveNewContact">save new Contacts</button>
     </p>
 
     <pre id="log"></pre>
@@ -23,6 +26,7 @@ export default {
             consoleLog('Found ' + contacts.length + ' contacts.');
             if (contacts.length) {
               consoleLog('First contact: ' + contacts[0].name + ' (' + contacts[0].email + ')');
+              consoleLog('First contact: ' + contacts[0]);
             }
           })
           .catch(function (err) {
@@ -51,10 +55,35 @@ export default {
       }
     },
 
+    saveNewContact() {
+      // create a new contact object
+      var contact = navigator.contacts.create();
+      contact.displayName = "Plumber";
+      contact.nickname = "Plumber";            // specify both to support all devices
+
+      // populate some fields
+      var name = new ContactName();
+      name.givenName = "Jane";
+      name.familyName = "Doe";
+      contact.name = name;
+
+      // save to device
+      contact.save(onSuccess, onError);
+
+    },
+
     consoleLog(data) {
       var logElement = document.getElementById('log');
       logElement.innerHTML += data + '\n';
-    }
+    },
+
+    onSuccess(contact) {
+      alert("Save Success");
+    },
+
+    onError(contactError) {
+      alert("Error = " + contactError.code);
+    },
 
   }
 }
