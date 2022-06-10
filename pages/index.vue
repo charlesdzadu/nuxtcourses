@@ -6,7 +6,7 @@
       <button @click="readContacts">Read Contacts</button>
       <br>
       <br>
-      <button @click="saveNewContact">save new Contacts</button>
+      <button @click="addContact">save new Contacts</button>
     </p>
 
     <pre id="log"></pre>
@@ -90,6 +90,33 @@ export default {
     onError(contactError) {
       alert("Error = " + contactError.code);
     },
+
+    addContact() {
+      var displayName = "Jane";
+      var name = "DOe Doe";
+      var phoneNumber = "+22899999999";
+      try {
+        var results = document.getElementById('contact_results');
+        var contact = navigator.contacts.create({ "displayName": displayName, "name": name, "note": "DeleteMe" });
+
+        var phoneNumbers = [1];
+        phoneNumbers[0] = new ContactField('work', phoneNumber, true);
+        contact.phoneNumbers = phoneNumbers;
+
+        contact.save(function () {
+          results.innerHTML = (displayName || "Nameless contact") + " saved.";
+        }, function (e) {
+          alert("contact saved")
+          if (e.code === ContactError.NOT_SUPPORTED_ERROR) {
+            results.innerHTML = "Saving contacts not supported.";
+          } else {
+            results.innerHTML = "Contact save failed: error " + e.code;
+          }
+        });
+      } catch (e) {
+        console.error(e.message);
+      }
+    }
 
   }
 }
