@@ -57,7 +57,9 @@ export default {
 
     saveNewContact() {
       // create a new contact object
-      var contact = navigator.contacts.create();
+      alert("Contact entrain de sauvegarder")
+      var api = (navigator.contacts || navigator.mozContacts);
+      var contact = api.create();
       contact.displayName = "Plumber";
       contact.nickname = "Plumber";            // specify both to support all devices
 
