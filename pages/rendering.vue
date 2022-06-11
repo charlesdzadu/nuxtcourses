@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>About Page</h1>
+    <h1>Hello Nuxters! 👋</h1>
     <p>
       This page is rendered on the <strong>{{ rendering }}</strong>
     </p>
@@ -12,10 +12,10 @@
       <li>Refresh the page for server side rendering.</li>
       <li>Click the links to see client side rendering.</li>
     </ul>
-    <NuxtLink to="/rendering"> Home page </NuxtLink>
+
+    <NuxtLink to="/about">About Page</NuxtLink>
   </div>
 </template>
-
 <script>
 export default {
   asyncData() {
